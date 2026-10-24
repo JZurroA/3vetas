@@ -33,11 +33,12 @@ CREATE TABLE DIRECCIONES (
   persona_ID INT NOT NULL,
   tipo ENUM('envio','facturacion') NOT NULL,
   direccion VARCHAR(255) NOT NULL,
-  cp VARCHAR(15) NOT NULL,
+  cp CHAR(5) NOT NULL,
   municipio VARCHAR(120) NOT NULL,
   provincia VARCHAR(120) NOT NULL,
   pais VARCHAR(120) NOT NULL,
-  CONSTRAINT fk_direcciones_personas FOREIGN KEY (persona_ID) REFERENCES PERSONAS(ID)
+  CONSTRAINT fk_direcciones_personas FOREIGN KEY (persona_ID) REFERENCES PERSONAS(ID),
+  CONSTRAINT chk_direcciones_cp CHECK (cp REGEXP '^[0-9]{5}$')
 ) ENGINE=InnoDB;
 
 CREATE TABLE TIPOS_TABLERO (
@@ -76,7 +77,7 @@ CREATE TABLE TABLEROS (
   ID_acabado INT NOT NULL,
   ID_formato INT NOT NULL,
   ID_grosor INT NOT NULL,
-  referencia VARCHAR(100) NOT NULL,
+  referencia VARCHAR(100) NOT NULL UNIQUE,
   descripcion TEXT NULL,
   precio_tablero DECIMAL(10,2) NOT NULL,
   stock_actual INT NOT NULL DEFAULT 0,
