@@ -52,14 +52,6 @@ app.security.cookie.same-site=${COOKIE_SAME_SITE:Lax}
 app.security.cookie.path=/api
 
 # ============================================================
-# SECURITY - CSRF
-# ============================================================
-
-app.security.csrf.enabled=true
-app.security.csrf.cookie-name=XSRF-TOKEN
-app.security.csrf.header-name=X-XSRF-TOKEN
-
-# ============================================================
 # SECURITY - DOBLE FACTOR DE AUTENTICACION
 # ============================================================
 
@@ -109,19 +101,3 @@ springdoc.swagger-ui.enabled=${SWAGGER_ENABLED:true}
 management.endpoints.web.base-path=/system
 management.endpoints.web.exposure.include=health,info
 management.endpoint.health.show-details=never
-
-# ============================================================
-# LOGGING
-# ============================================================
-
-logging.level.root=INFO
-logging.level.com.api.tresvetas=DEBUG
-logging.level.org.springframework.security=INFO
-logging.level.org.flywaydb=INFO
-
-# ============================================================
-# ERRORES HTTP
-# ============================================================
-
-server.error.include-message=never
-server.error.include-stacktrace=never
