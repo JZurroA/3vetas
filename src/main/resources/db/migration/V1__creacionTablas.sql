@@ -60,14 +60,14 @@ CREATE TABLE ACABADOS (
 
 CREATE TABLE FORMATOS (
   ID INT AUTO_INCREMENT PRIMARY KEY,
-  ancho_mm INT NOT NULL,
-  alto_mm INT NOT NULL,
+  ancho_mm DECIMAL(12,4) NOT NULL,
+  alto_mm DECIMAL(12,4) NOT NULL,
   CONSTRAINT chk_formatos_medidas CHECK (ancho_mm > 0 AND alto_mm > 0)
 ) ENGINE=InnoDB;
 
 CREATE TABLE GROSORES (
   ID INT AUTO_INCREMENT PRIMARY KEY,
-  valor_mm INT NOT NULL,
+  valor_mm DECIMAL(12,4) NOT NULL,
   CONSTRAINT chk_grosores_valor CHECK (valor_mm > 0)
 ) ENGINE=InnoDB;
 
@@ -111,8 +111,8 @@ CREATE TABLE PIEZAS (
   ID INT AUTO_INCREMENT PRIMARY KEY,
   ID_proyecto INT NOT NULL,
   descripcion VARCHAR(255) NULL,
-  ancho_mm INT NOT NULL,
-  alto_mm INT NOT NULL,
+  ancho_mm DECIMAL(12,4) NOT NULL,
+  alto_mm DECIMAL(12,4) NOT NULL,
   cantidad INT NOT NULL,
   rotacion_permitida BOOLEAN NOT NULL DEFAULT TRUE,
   CONSTRAINT fk_piezas_proyecto FOREIGN KEY (ID_proyecto) REFERENCES PROYECTOS(ID),
@@ -125,8 +125,8 @@ CREATE TABLE OPTIMIZACIONES (
   nombre_opcion VARCHAR(150) NOT NULL,
   ID_tablero INT NOT NULL,
   cantidad INT NOT NULL,
-  superficie_utilizada BIGINT NOT NULL,
-  superficie_desperdiciada BIGINT NOT NULL,
+  superficie_utilizada DECIMAL(24,8) NOT NULL,
+  superficie_desperdiciada DECIMAL(24,8) NOT NULL,
   porcentaje_aprovechamiento DECIMAL(5,2) NOT NULL,
   coste_estimado DECIMAL(10,2) NOT NULL,
   seleccionada BOOLEAN NOT NULL DEFAULT FALSE,
@@ -146,10 +146,10 @@ CREATE TABLE DISTRIBUCION_PIEZAS (
   num_tablero INT NOT NULL,
   numero_unidad INT NOT NULL,
   orden_dibujo INT NOT NULL,
-  posicion_x_mm INT NOT NULL,
-  posicion_y_mm INT NOT NULL,
-  ancho_final_mm INT NOT NULL,
-  alto_final_mm INT NOT NULL,
+  posicion_x_mm DECIMAL(12,4) NOT NULL,
+  posicion_y_mm DECIMAL(12,4) NOT NULL,
+  ancho_final_mm DECIMAL(12,4) NOT NULL,
+  alto_final_mm DECIMAL(12,4) NOT NULL,
   rotada BOOLEAN NOT NULL DEFAULT FALSE,
   CONSTRAINT fk_distribucion_optimizacion FOREIGN KEY (ID_optimizacion) REFERENCES OPTIMIZACIONES(ID),
   CONSTRAINT fk_distribucion_pieza FOREIGN KEY (ID_pieza) REFERENCES PIEZAS(ID),
