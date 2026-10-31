@@ -130,17 +130,25 @@ ALTER TABLE DOCUMENTOS
 -- 11. Ajustar claves foráneas heredadas de V1 para el borrado del planificador.
 -- Una pieza eliminada no debe dejar posiciones de corte huérfanas.
 ALTER TABLE DISTRIBUCION_PIEZAS
-  DROP FOREIGN KEY fk_distribucion_pieza,
-  ADD CONSTRAINT fk_distribucion_pieza FOREIGN KEY (ID_pieza)
-    REFERENCES PIEZAS(ID) ON DELETE CASCADE;
+  DROP FOREIGN KEY fk_distribucion_pieza;
+
+ALTER TABLE DISTRIBUCION_PIEZAS
+  ADD CONSTRAINT fk_distribucion_pieza
+    FOREIGN KEY (ID_pieza)
+    REFERENCES PIEZAS(ID)
+    ON DELETE CASCADE;
 
 -- Los metadatos de planos asociados a una optimización se eliminan con ella.
 -- Los documentos de pedidos siguen protegidos por su relación restrictiva.
 -- Los archivos físicos requieren gestión independiente desde la aplicación.
 ALTER TABLE DOCUMENTOS
-  DROP FOREIGN KEY fk_documentos_optimizacion,
-  ADD CONSTRAINT fk_documentos_optimizacion FOREIGN KEY (ID_optimizacion)
-    REFERENCES OPTIMIZACIONES(ID) ON DELETE CASCADE;
+  DROP FOREIGN KEY fk_documentos_optimizacion;
+
+ALTER TABLE DOCUMENTOS
+  ADD CONSTRAINT fk_documentos_optimizacion
+    FOREIGN KEY (ID_optimizacion)
+    REFERENCES OPTIMIZACIONES(ID)
+    ON DELETE CASCADE;
 
 -- Las líneas de pedido deben proteger tanto el pedido como la optimización.
 -- IMPORTANTE: no usar CASCADE en LINEAS_PEDIDO -> OPTIMIZACIONES,
