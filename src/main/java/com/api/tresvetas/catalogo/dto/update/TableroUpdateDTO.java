@@ -51,9 +51,5 @@ public class TableroUpdateDTO {
     private BigDecimal precioTablero;
 
     @NotNull
-    @PositiveOrZero
-    private Integer stockActual;
-
-    @NotNull
     private Boolean activo;
 }

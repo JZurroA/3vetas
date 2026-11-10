@@ -47,8 +47,5 @@ public class TableroPatchDTO {
     @Digits(integer = 8, fraction = 2)
     private BigDecimal precioTablero;
 
-    @PositiveOrZero
-    private Integer stockActual;
-
     private Boolean activo;
 }
