@@ -1,8 +1,8 @@
 package com.api.tresvetas.pedidos.entity;
 
 import com.api.tresvetas.proyectos.entity.Proyecto;
-import com.api.tresvetas.usuarios.direccion.entity.Direccion;
-import com.api.tresvetas.usuarios.persona.entity.Persona;
+import com.api.tresvetas.usuarios.entity.Direccion;
+import com.api.tresvetas.usuarios.entity.Persona;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
