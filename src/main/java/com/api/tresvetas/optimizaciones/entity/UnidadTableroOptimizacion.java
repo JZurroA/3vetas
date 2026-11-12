@@ -8,8 +8,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -48,4 +51,7 @@ public class UnidadTableroOptimizacion {
 
     @Column(name = "numero_tablero", nullable = false)
     private Integer numeroTablero;
+    
+    @OneToMany(mappedBy = "unidadTablero", fetch = FetchType.LAZY)
+    private List<DistribucionPieza> distribuciones = new ArrayList<>();
 }
