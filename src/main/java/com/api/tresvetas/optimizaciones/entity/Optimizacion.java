@@ -9,9 +9,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -62,4 +65,7 @@ public class Optimizacion {
     @Column(name = "fecha_calculo", nullable = false,
             insertable = false, updatable = false)
     private LocalDateTime fechaCalculo;
+    
+    @OneToMany(mappedBy = "optimizacion", fetch = FetchType.LAZY)
+    private List<DetalleOptimizacion> detalles = new ArrayList<>();
 }
